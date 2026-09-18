@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Warning: Dangerous Link Detected</title>
+  <link rel="stylesheet" href="warning.css">
+</head>
+<body>
+  <div class="warning-container" id="warningCard">
+    <div class="header-section">
+      <div class="shield-icon" id="shieldIcon">🛑</div>
+      <div class="title-group">
+        <h1 id="pageHeading">Security Warning: Navigation Blocked</h1>
+        <p>Phishing & Malicious Link Alert Browser Extension</p>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <span class="badge badge-malicious" id="threatBadge">MALICIOUS</span>
+      <span style="font-size: 13px; color: #94a3b8;" id="sourceLabel">Verified by Security Sources</span>
+    </div>
+
+    <div class="details-card">
+      <div class="detail-row">
+        <div class="detail-label">Attempted Destination URL</div>
+        <div class="detail-value url-box" id="targetUrl">https://example-phishing-site.test</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Threat Classification</div>
+        <div class="detail-value reason-box" id="threatReason">Phishing / Social Engineering detected</div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">Security Source</div>
+        <div class="detail-value" id="securitySources" style="color: #cbd5e1;">Google Safe Browsing & VirusTotal</div>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h3 style="margin-top: 0; font-size: 16px; color: #f8fafc;">Why am I seeing this?</h3>
+      <p>
+        The link you clicked has been identified as potentially harmful. Attackers create deceptive websites designed to mimic legitimate services to steal your login credentials, financial information, or install malicious software on your device.
+      </p>
+    </div>
+
+    <div class="button-row">
+      <button class="btn btn-safety" id="goBackBtn">🛡️ Go Back to Safety (Recommended)</button>
+      <button class="btn btn-proceed" id="proceedBtn">Proceed Anyway (Unsafe)</button>
+    </div>
+  </div>
+
+  <script src="warning.js"></script>
+</body>
+</html>

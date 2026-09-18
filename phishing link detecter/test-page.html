@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing & Malicious Link Alert — Security Test Suite</title>
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-card: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --border: #334155;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    .badge-project {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      margin: 16px 0 8px 0;
+      font-size: 32px;
+      color: #f8fafc;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .section-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .section-card h2 {
+      margin-top: 0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .link-item {
+      background: #0f172a;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link-item a {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 2px 6px;
+    }
+
+    .link-item a:hover {
+      text-decoration: underline;
+    }
+
+    .link-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .btn-inject {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-inject:hover {
+      background: #0369a1;
+    }
+
+    .status-tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .tag-safe { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .tag-suspicious { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .tag-malicious { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge-project">🛡️ Security Verification Environment</span>
+      <h1>Phishing & Malicious Link Alert</h1>
+      <p class="subtitle">Live Hyperlink Reputation & Threat Detection Suite</p>
+    </header>
+
+    <!-- Category 1: Safe Links -->
+    <div class="section-card">
+      <h2 style="color: #34d399;">
+        <span>✅</span> 1. Verified Legitimate Websites (Safe)
+      </h2>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        These are trusted websites. The extension preserves normal appearance and allows normal navigation without interruption.
+      </p>
+
+      <div class="link-list">
+        <div class="link-item">
+          <div>
+            <a href="https://safe-example.test">https://safe-example.test</a>
+            <div class="link-desc">Simulated safe educational domain for testing.</div>
+          </div>
+          <span class="status-tag tag-safe">Safe</span>
+        </div>
+
+        <div class="link-item">
+          <div>
+            <a href="https://wikipedia.org">https://wikipedia.org</a>
+            <div class="link-desc">Trusted free online encyclopedia.</div>
+          </div>
+          <span class="status-tag tag-safe">Safe</span>
+        </div>
+
+        <div class="link-item">
+          <div>
+            <a href="https://python.org">https://python.org</a>
+            <div class="link-desc">Official Python programming language website.</div>
+          </div>
+          <span class="status-tag tag-safe">Safe</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 2: Suspicious Links -->
+    <div class="section-card">
+      <h2 style="color: #fbbf24;">
+        <span>⚠️</span> 2. Suspicious Simulated Links (Warning)
+      </h2>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        These links exhibit suspicious patterns (unusual TLDs, deceptive subdomain combinations). Highlighted with an amber warning outline.
+      </p>
+
+      <div class="link-list">
+        <div class="link-item">
+          <div>
+            <a href="https://suspicious-example.test/claim-prize">https://suspicious-example.test/claim-prize</a>
+            <div class="link-desc">Simulated suspicious prize reward giveaway portal.</div>
+          </div>
+          <span class="status-tag tag-suspicious">Suspicious</span>
+        </div>
+
+        <div class="link-item">
+          <div>
+            <a href="https://update-account-alert.net/security-check">https://update-account-alert.net/security-check</a>
+            <div class="link-desc">Simulated suspicious domain using urgent account keywords.</div>
+          </div>
+          <span class="status-tag tag-suspicious">Suspicious</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3: Malicious Links -->
+    <div class="section-card">
+      <h2 style="color: #f87171;">
+        <span>🛑</span> 3. Malicious Simulated Links (High Threat Phishing/Malware)
+      </h2>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        These links represent deceptive phishing pages or malware payloads. Highlighted in red with a danger badge. Clicking will be intercepted.
+      </p>
+
+      <div class="link-list">
+        <div class="link-item">
+          <div>
+            <a href="https://malicious-example.test/fake-banking-login">https://malicious-example.test/fake-banking-login</a>
+            <div class="link-desc">Simulated credential harvesting phishing portal.</div>
+          </div>
+          <span class="status-tag tag-malicious">Malicious</span>
+        </div>
+
+        <div class="link-item">
+          <div>
+            <a href="https://paypal-secure-login-fake.com/signin">https://paypal-secure-login-fake.com/signin</a>
+            <div class="link-desc">Simulated brand impersonation social engineering link.</div>
+          </div>
+          <span class="status-tag tag-malicious">Malicious</span>
+        </div>
+
+        <div class="link-item">
+          <div>
+            <a href="https://malware-payload.test/installer.exe">https://malware-payload.test/installer.exe</a>
+            <div class="link-desc">Simulated malicious software / Trojan horse payload link.</div>
+          </div>
+          <span class="status-tag tag-malicious">Malicious</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 4: Dynamic Link Insertion (MutationObserver Test) -->
+    <div class="section-card">
+      <h2 style="color: #38bdf8;">
+        <span>⚡</span> 4. Dynamic Link Insertion (MutationObserver Live Test)
+      </h2>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        In modern Single-Page Applications (like Twitter/X, Instagram, or Facebook), posts load dynamically as you scroll. Click below to inject new links into the DOM without refreshing the page to test real-time <code>MutationObserver</code> detection:
+      </p>
+
+      <button id="injectBtn" class="btn-inject">
+        <span>➕</span> Inject Dynamic Links via JavaScript
+      </button>
+
+      <div id="dynamicContainer" class="link-list" style="margin-top: 16px;">
+        <!-- Injected links will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let dynamicCount = 0;
+    document.getElementById("injectBtn").addEventListener("click", () => {
+      dynamicCount++;
+      const container = document.getElementById("dynamicContainer");
+
+      const item = document.createElement("div");
+      item.className = "link-item";
+      item.innerHTML = `
+        <div>
+          <a href="https://malicious-example.test/dynamic-phish-${dynamicCount}">https://malicious-example.test/dynamic-phish-${dynamicCount}</a>
+          <div class="link-desc">Dynamically injected simulated phishing link #${dynamicCount} (detected via MutationObserver).</div>
+        </div>
+        <span class="status-tag tag-malicious">Dynamic Malicious</span>
+      `;
+      container.appendChild(item);
+    });
+  </script>
+</body>
+</html>

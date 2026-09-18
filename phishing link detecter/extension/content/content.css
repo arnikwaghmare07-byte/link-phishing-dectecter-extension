@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Phishing & Malicious Link Alert - Content Script Stylesheet
+   Provides visual highlights, danger badges, tooltips, and pre-click modal.
+   ========================================================================== */
+
+/* 1. Malicious Link Highlight (Red) */
+a.phishing-danger {
+  outline: 2px solid #ef4444 !important;
+  outline-offset: 2px !important;
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #b91c1c !important;
+  border-radius: 4px !important;
+  cursor: not-allowed !important;
+  position: relative !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.4) !important;
+}
+
+a.phishing-danger::before {
+  content: "🛑 " !important;
+  font-size: 0.9em !important;
+  vertical-align: middle !important;
+}
+
+/* 2. Suspicious Link Highlight (Orange/Amber) */
+a.suspicious-link {
+  outline: 2px dashed #f59e0b !important;
+  outline-offset: 2px !important;
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: #b45309 !important;
+  border-radius: 4px !important;
+  position: relative !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0 0 5px rgba(245, 158, 11, 0.3) !important;
+}
+
+a.suspicious-link::before {
+  content: "⚠️ " !important;
+  font-size: 0.9em !important;
+  vertical-align: middle !important;
+}
+
+/* 3. Link Hover Tooltip */
+.phishing-guard-tooltip {
+  position: absolute;
+  z-index: 2147483646;
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid #334155;
+  pointer-events: none;
+  max-width: 280px;
+  word-break: break-all;
+  animation: pgFadeIn 0.15s ease-in-out;
+}
+
+.phishing-guard-tooltip.tooltip-danger {
+  border-color: #ef4444;
+}
+
+.phishing-guard-tooltip.tooltip-suspicious {
+  border-color: #f59e0b;
+}
+
+@keyframes pgFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   4. IN-PAGE PRE-CLICK WARNING MODAL
+   Intercepts navigation directly on the current tab before dangerous pages load.
+   ========================================================================== */
+
+#phishing-guard-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  animation: pgModalFadeIn 0.2s ease-out !important;
+}
+
+@keyframes pgModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pg-modal-card {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+  width: 90% !important;
+  max-width: 520px !important;
+  border-radius: 16px !important;
+  padding: 28px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid #334155 !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+.pg-modal-card.card-malicious {
+  border-top: 6px solid #ef4444 !important;
+}
+
+.pg-modal-card.card-suspicious {
+  border-top: 6px solid #f59e0b !important;
+}
+
+.pg-modal-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+.pg-modal-icon {
+  font-size: 36px !important;
+  line-height: 1 !important;
+}
+
+.pg-modal-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  color: #f8fafc !important;
+}
+
+.pg-modal-subtitle {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+  margin-top: 2px !important;
+}
+
+.pg-threat-tag {
+  display: inline-block !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.tag-malicious {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #fca5a5 !important;
+  border: 1px solid #ef4444 !important;
+}
+
+.tag-suspicious {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #fcd34d !important;
+  border: 1px solid #f59e0b !important;
+}
+
+.pg-modal-body {
+  margin: 16px 0 !important;
+  font-size: 14px !important;
+  color: #cbd5e1 !important;
+  line-height: 1.5 !important;
+}
+
+.pg-url-preview {
+  background: #0f172a !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid #334155 !important;
+  font-family: monospace !important;
+  font-size: 12px !important;
+  color: #38bdf8 !important;
+  word-break: break-all !important;
+  margin: 12px 0 !important;
+}
+
+.pg-modal-reason {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-left: 4px solid #ef4444 !important;
+  padding: 10px 14px !important;
+  margin: 12px 0 !important;
+  border-radius: 0 6px 6px 0 !important;
+  font-size: 13px !important;
+  color: #fca5a5 !important;
+}
+
+.pg-modal-reason.reason-suspicious {
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-left-color: #f59e0b !important;
+  color: #fcd34d !important;
+}
+
+.pg-modal-actions {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+  flex-wrap: wrap !important;
+}
+
+.pg-btn {
+  padding: 10px 18px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pg-btn-safe {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  flex: 1 1 160px !important;
+}
+
+.pg-btn-safe:hover {
+  background: #0369a1 !important;
+}
+
+.pg-btn-proceed {
+  background: transparent !important;
+  color: #94a3b8 !important;
+  border: 1px solid #475569 !important;
+  flex: 0 1 auto !important;
+}
+
+.pg-btn-proceed:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border-color: #ef4444 !important;
+}

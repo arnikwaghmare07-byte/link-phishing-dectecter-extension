@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Guard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <div class="popup-header">
+    <div class="brand">
+      <span class="brand-icon">🛡️</span>
+      <span class="brand-title">Phishing Guard</span>
+    </div>
+    <div id="statusPill" class="status-pill status-active">
+      <span class="status-dot"></span>
+      <span id="statusText">Active</span>
+    </div>
+  </div>
+
+  <!-- Demo Banner -->
+  <div id="demoBanner" class="demo-banner">
+    🧪 SIMULATION MODE (Heuristic Engine Active)
+  </div>
+
+  <!-- Current Page Domain -->
+  <div class="domain-card">
+    <div>
+      <div class="domain-label">Current Page</div>
+      <div id="domainName" class="domain-name">Detecting...</div>
+    </div>
+    <div style="font-size: 11px; color: #94a3b8; text-align: right;">
+      <div class="domain-label">Last Scan</div>
+      <div id="lastScanTime">--:--</div>
+    </div>
+  </div>
+
+  <!-- Statistics Grid -->
+  <div class="stats-grid">
+    <div class="stat-box">
+      <div id="statSafe" class="stat-val val-safe">0</div>
+      <div class="stat-title">Safe</div>
+    </div>
+    <div class="stat-box">
+      <div id="statSuspicious" class="stat-val val-suspicious">0</div>
+      <div class="stat-title">Suspicious</div>
+    </div>
+    <div class="stat-box">
+      <div id="statMalicious" class="stat-val val-malicious">0</div>
+      <div class="stat-title">Malicious</div>
+    </div>
+    <div class="stat-box">
+      <div id="statUnknown" class="stat-val val-unknown">0</div>
+      <div class="stat-title">Unknown</div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button id="scanBtn" class="btn btn-primary">
+      <span>🔄</span> Scan Current Page
+    </button>
+    <button id="detailsBtn" class="btn btn-secondary">
+      <span>📋</span> View Flagged Links
+    </button>
+    <button id="settingsBtn" class="btn btn-secondary">
+      <span>⚙️</span> Settings
+    </button>
+  </div>
+
+  <!-- Flagged Details Drawer -->
+  <div id="detailsPanel" class="panel">
+    <div style="font-size: 12px; font-weight: 700; margin-bottom: 6px; color: #38bdf8;">
+      Flagged Links On Current Tab:
+    </div>
+    <div id="detailsList" class="details-list">
+      <div style="color: #94a3b8; text-align: center; padding: 10px;">No dangerous links detected.</div>
+    </div>
+  </div>
+
+  <!-- Settings Drawer -->
+  <div id="settingsPanel" class="panel">
+    <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: #38bdf8;">
+      Extension Preferences
+    </div>
+
+    <div class="setting-item">
+      <span>Real-Time Protection</span>
+      <label class="switch">
+        <input type="checkbox" id="toggleProtection" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <span>Automatic Page Scan</span>
+      <label class="switch">
+        <input type="checkbox" id="toggleAutoScan" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <span>Highlight Dangerous Links</span>
+      <label class="switch">
+        <input type="checkbox" id="toggleHighlight" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <span>Pre-Click Warning Dialog</span>
+      <label class="switch">
+        <input type="checkbox" id="toggleWarnClick" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <span>Demo Simulation Mode</span>
+      <label class="switch">
+        <input type="checkbox" id="toggleDemoMode" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
